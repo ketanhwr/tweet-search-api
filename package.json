@@ -5,5 +5,9 @@
   "main": "index.js",
   "repository": "git@github.com:ketanhwr/tweet-search-api.git",
   "author": "Ketan Gupta <ketan19972010@gmail.com>",
-  "license": "WTFPL"
+  "license": "WTFPL",
+  "dependencies": {
+    "mongoose": "^4.11.8",
+    "restify": "^5.2.0"
+  }
 }
