@@ -1,5 +1,6 @@
 var controllers = require('./controllers.js');
 
 module.exports = function(server) {
-  server.get('/', controllers.home.get);
+  server.get('/tweets/:id', controllers.tweet.get);
+  server.post('/tweets/', controllers.tweet.post);
 };
