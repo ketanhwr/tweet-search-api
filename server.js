@@ -1,14 +1,15 @@
 var restify = require('restify');
 var mongoose = require('mongoose');
 var routes = require('./routes');
+var config = require('./config');
 
 var server = restify.createServer();
 server.use(restify.plugins.queryParser());
 
 routes(server);
 
-server.listen(8080, function() {
-  mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
+server.listen(config.port, function() {
+  mongoose.connect(config.db_uri, { useMongoClient: true });
   mongoose.Promise = global.Promise;
 
   var db = mongoose.connection;

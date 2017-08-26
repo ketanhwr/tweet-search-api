@@ -1,0 +1,4 @@
+{
+  "port": 8080,
+  "db_uri" : "mongodb://localhost/test"
+}
