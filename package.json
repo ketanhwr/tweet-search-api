@@ -1,13 +1,16 @@
 {
-  "name": "tweet-search-api",
-  "version": "1.0.0",
-  "description": "A REST API which allows a user to create, read, update and delete tweets.",
-  "main": "index.js",
-  "repository": "git@github.com:ketanhwr/tweet-search-api.git",
-  "author": "Ketan Gupta <ketan19972010@gmail.com>",
-  "license": "WTFPL",
-  "dependencies": {
-    "mongoose": "^4.11.8",
-    "restify": "^5.2.0"
-  }
+    "name": "tweet-search-api",
+    "version": "1.0.0",
+    "description": "A REST API which allows a user to create, read, update and delete tweets.",
+    "main": "index.js",
+    "repository": "git@github.com:ketanhwr/tweet-search-api.git",
+    "author": "Ketan Gupta <ketan19972010@gmail.com>",
+    "license": "WTFPL",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "mongoose": "^4.11.8",
+        "restify": "^5.2.0"
+    }
 }
