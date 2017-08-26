@@ -1,11 +1,9 @@
 var restify = require('restify');
+var routes = require('./routes');
 
 var server = restify.createServer();
 
-server.get('/', function(req, res, next) {
-    res.send('Tweet Search API!');
-    next();
-});
+routes(server);
 
 server.listen(8080, function() {
     console.log('%s listening at %s', server.name, server.url);
