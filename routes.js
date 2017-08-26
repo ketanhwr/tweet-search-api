@@ -1,4 +1,4 @@
-var controllers = require('./controllers.js');
+var controllers = require('./controllers');
 
 module.exports = function(server) {
   server.get('/tweets/:id', controllers.tweet.get);

@@ -1,4 +1,4 @@
-var models = require('./models.js');
+var models = require('./models');
 
 var Tweet = models.Tweet;
 
