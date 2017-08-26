@@ -1,7 +1,5 @@
-module.exports = function(server) {
-    server.get('/', function(req, res, next) {
-        res.send('First route!');
+var controllers = require('./controllers.js');
 
-        next();
-    });
+module.exports = function(server) {
+    server.get('/', controllers.home.get);
 };
