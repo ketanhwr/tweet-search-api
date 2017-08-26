@@ -64,10 +64,56 @@ var TweetController = function() {
     });
   }
 
+  var put = function(req, res, next) {
+    var id = req.params.id;
+
+    Tweet.findById(id, function(err, tweet) {
+      if (err) {
+        console.log(err);
+
+        res.send(INVALID);
+        return next();
+      }
+
+      var username = tweet.get('username');
+      var content = tweet.get('content');
+
+      if ('username' in req.query) {
+        tweet.username = req.query.username;
+      }
+
+      if ('content' in req.query) {
+        tweet.content = req.query.content;
+      }
+
+      if ('date' in req.query) {
+        tweet.date = req.query.date;
+      }
+
+      tweet.save(function(err, _tweet) {
+        if (err) {
+          console.error(err);
+
+          res.send(INVALID);
+          return next();
+        }
+
+        var response = {
+          'status': 'ok',
+          '_id': _tweet.id
+        };
+
+        res.send(response);
+        next();
+      });
+    });
+  }
+
   return {
     get: get,
     post: post,
-    del: del
+    del: del,
+    put: put
   };
 };
 
