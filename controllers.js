@@ -47,7 +47,9 @@ var TweetController = function() {
   var del = function(req, res, next) {
     var id = req.params.id;
 
-    Tweet.deleteOne({ _id: id }, function(err) {
+    var find = { '_id': id };
+
+    Tweet.deleteOne(find, function(err) {
       if (err) {
         console.log(err);
 
@@ -67,45 +69,36 @@ var TweetController = function() {
   var put = function(req, res, next) {
     var id = req.params.id;
 
-    Tweet.findById(id, function(err, tweet) {
+    var find = { '_id': id };
+    var update = {};
+
+    if ('username' in req.query) {
+      update.username = req.query.username;
+    }
+
+    if ('content' in req.query) {
+      update.content = req.query.content;
+    }
+
+    if ('date' in req.query) {
+      update.date = req.query.date;
+    }
+
+    Tweet.update(find, update, function(err, raw) {
       if (err) {
-        console.log(err);
+        console.error(err);
 
         res.send(INVALID);
         return next();
       }
 
-      var username = tweet.get('username');
-      var content = tweet.get('content');
+      var response = {
+        'status': 'ok',
+        '_id': id
+      };
 
-      if ('username' in req.query) {
-        tweet.username = req.query.username;
-      }
-
-      if ('content' in req.query) {
-        tweet.content = req.query.content;
-      }
-
-      if ('date' in req.query) {
-        tweet.date = req.query.date;
-      }
-
-      tweet.save(function(err, _tweet) {
-        if (err) {
-          console.error(err);
-
-          res.send(INVALID);
-          return next();
-        }
-
-        var response = {
-          'status': 'ok',
-          '_id': _tweet.id
-        };
-
-        res.send(response);
-        next();
-      });
+      res.send(response);
+      next();
     });
   }
 
